@@ -1,0 +1,25 @@
+{
+  "name": "github-tweet-pull-requests",
+  "description": "Receives a web hook from github when a pull request is opened, and tweets the event.",
+  "version": "0.0.1",
+  "repository": {
+    "url": "https://github.com/nodekc/github-tweet-pull-requests"
+  },
+  "engines": {
+    "node": "~v0.4.7"
+  },
+  "dependencies": {
+    "express": "~v2.5.6",
+    "coffee-script": "~v1.2.0",
+    "jade": "~v0.20.1",
+    "stylus": "~v0.23.0"
+  },
+  "devDependencies": {
+    "vows": "~v0.6.1"
+  },
+  "author": "NodeKC",
+  "main": "runner.js",
+  "scripts": {
+    "test": "vows tests/*"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "web",
+  "config": {
+    "content_type": "form",
+    "url": "http://respondto.it/github-test",
+    "insecure_ssl": "1"
+  },
+  "events": [
+    "pull_request"
+  ],
+  "active": true
+}
