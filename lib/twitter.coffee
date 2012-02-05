@@ -19,7 +19,7 @@ twitter = () ->
     access_token: process.env.TWITTER_ACCESS_TOKEN
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 
-  tweet: (message, callback) ->
+  tweet: (message, callback) =>
     this.twitter_api.updateStatus message, (data) ->
       return callback data if data.statusCode? and data.statusCode != 200
       callback null
