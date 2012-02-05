@@ -3,7 +3,7 @@ twitter = require '../lib/twitter'
 
 hooks =
   pullRequest: (request, response) ->
-    result = parser.parse request.body
+    result = parser.parse request.body.payload
     return response.send result.message, result.status if result.status is 400
 
     twitter.tweet result.message, (error) ->

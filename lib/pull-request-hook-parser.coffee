@@ -7,7 +7,7 @@ isValid = (message) ->
 
 actOn = (message) ->
   status: 200
-  message: 'test'
+  message: "#{message.sender.login} #{message.action} a pull request: #{message.pull_request.url}"
 
 error = () ->
   status: 400
