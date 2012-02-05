@@ -1,10 +1,16 @@
 Twitter = require 'twitter'
 
 do () ->  
-  console.warn 'Twitter consumer key is not configured.' if !process.env.TWITTER_CONSUMER_KEY
-  console.warn 'Twitter consumer secret is not configured.' if !process.env.TWITTER_CONSUMER_SECRET
-  console.warn 'Twitter access token is not configured.' if !process.env.TWITTER_ACCESS_TOKEN
-  console.warn 'Twitter access token secret is not configured.' if !process.env.TWITTER_ACCESS_TOKEN_SECRET
+  warnings = []
+  warnings.push 'TWITTER_CONSUMER_KEY' if !process.env.TWITTER_CONSUMER_KEY
+  warnings.push 'TWITTER_CONSUMER_SECRET' if !process.env.TWITTER_CONSUMER_SECRET
+  warnings.push 'TWITTER_ACCESS_TOKEN' if !process.env.TWITTER_ACCESS_TOKEN
+  warnings.push 'TWITTER_ACCESS_TOKEN_SECRET' if !process.env.TWITTER_ACCESS_TOKEN_SECRET
+
+  if warnings.length > 0
+    console.warn "WARNING: Your twitter API environment variables are not configured."
+    warnings.forEach (w) ->
+      console.warn "\t" + w
 
 twitter = () ->
   this.twitter_api = new Twitter 
