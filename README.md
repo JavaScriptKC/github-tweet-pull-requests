@@ -8,16 +8,20 @@ The service tweets a nicely formatted message, calling for comments on the pull 
 
 Visit http://developer.twitter.com/ and set up an application with read-write permissions to the handle that will tweet pull requests. Once set up, install the provided api keys in your environment variables.
 
+    TWITTER_CONSUMER_KEY
+    TWITTER_CONSUMER_SECRET
+    TWITTER_ACCESS_TOKEN
+    TWITTER_ACCESS_TOKEN_SECRET
+    
 _UNIX_
 
-    export TWITTER_CONSUMER_KEY=<value>
-    export TWITTER_CONSUMER_SECRET=<value>
-    export TWITTER_ACCESS_TOKEN=<value>
-    export TWITTER_ACCESS_TOKEN_SECRET=<value>
-
+    export KEY=VALUE
+    
 _WINDOWS_
 
-    set TWITTER_CONSUMER_KEY=<value>
-    set TWITTER_CONSUMER_SECRET=<value>
-    set TWITTER_ACCESS_TOKEN=<value>
-    set TWITTER_ACCESS_TOKEN_SECRET=<value>
+    set KEY=VALUE
+
+_HEROKU_
+
+    heroku config:add KEY=VALUE
+    heroku config:remove KEY
