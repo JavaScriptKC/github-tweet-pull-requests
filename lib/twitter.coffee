@@ -1,6 +1,6 @@
 Twitter = require 'twitter'
 
-do () ->  
+do () ->
   warnings = []
   warnings.push 'TWITTER_CONSUMER_KEY' if !process.env.TWITTER_CONSUMER_KEY
   warnings.push 'TWITTER_CONSUMER_SECRET' if !process.env.TWITTER_CONSUMER_SECRET
@@ -13,15 +13,15 @@ do () ->
       console.warn "\t" + w
 
 twitter = () ->
-  this.twitter_api = new Twitter 
+  this.twitter_api = new Twitter
     consumer_key: process.env.TWITTER_CONSUMER_KEY
     consumer_secret: process.env.TWITTER_CONSUMER_SECRET
     access_token: process.env.TWITTER_ACCESS_TOKEN
     access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-  
-  tweet: (message, callback) -> 
+
+  tweet: (message, callback) ->
     this.twitter_api.updateStatus message, (data) ->
       return callback data if data.statusCode? and data.statusCode != 200
-      callback null 
+      callback null
 
-module.exports = new twitter
+module.exports = new twitter()
