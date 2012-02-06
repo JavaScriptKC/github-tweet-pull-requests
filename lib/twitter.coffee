@@ -12,16 +12,24 @@ do () ->
     warnings.forEach (w) ->
       console.warn "\t" + w
 
-twitter = () ->
-  this.twitter_api = new Twitter
-    consumer_key: process.env.TWITTER_CONSUMER_KEY
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET
-    access_token_key: process.env.TWITTER_ACCESS_TOKEN
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+default_options = 
+  consumer_key: process.env.TWITTER_CONSUMER_KEY
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET 
+
+twitter = (options = default_options) ->
+  this.options = options
 
   tweet: (message, callback) =>
-    this.twitter_api.updateStatus message, (data) ->
-      return callback data if data.statusCode? and data.statusCode != 200
-      callback null
+    twitter = new Twitter this.options
+      console.log 'Updating twitter status...'
 
-module.exports = new twitter()
+    twitter.updateStatus message, (data) ->
+      console.log 'Update result: '
+      console.log data
+
+      return callback data if data.statusCode? and data.statusCode != 200
+      callback null 
+
+module.exports = twitter
