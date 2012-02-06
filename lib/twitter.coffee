@@ -23,7 +23,7 @@ twitter = (options = default_options) ->
 
   tweet: (message, callback) =>
     twitter = new Twitter this.options
-      console.log 'Updating twitter status...'
+    console.log 'Updating twitter status...'
 
     twitter.updateStatus message, (data) ->
       console.log 'Update result: '
