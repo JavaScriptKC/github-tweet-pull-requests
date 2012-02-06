@@ -26,10 +26,12 @@ twitter = (options = default_options) ->
     console.log 'Updating twitter status...'
 
     twitter.updateStatus message, (data) ->
-      console.log 'Update result: '
-      console.log data
-
-      return callback data if data.statusCode? and data.statusCode != 200
+      if data.statusCode? and data.statusCode != 200
+        console.log 'Failure'
+        console.log data
+        return callback data 
+        
+      console.log 'Update success!'
       callback null 
 
 module.exports = twitter
