@@ -20,18 +20,23 @@ default_options =
 
 twitter = (options = default_options) ->
   this.options = options
+  return this
 
-  tweet: (message, callback) =>
-    twitter = new Twitter this.options
-    console.log 'Updating twitter status...'
+twitter.prototype.tweet = (message, callback) ->
+  t = this._getApi(this.options)
 
-    twitter.updateStatus message, (data) ->
-      if data.statusCode? and data.statusCode != 200
-        console.log 'Failure'
-        console.log data
-        return callback data 
-        
-      console.log 'Update success!'
-      callback null 
+  console.log 'Updating twitter status...'
+
+  t.updateStatus message, (data) ->
+    if data.statusCode? and data.statusCode != 200
+      console.error 'Failure'
+      console.error data
+      return callback data, null 
+      
+    console.log 'Update success!'
+    callback null, data 
+  
+twitter.prototype._getApi = (options) ->
+  new Twitter options
 
 module.exports = twitter

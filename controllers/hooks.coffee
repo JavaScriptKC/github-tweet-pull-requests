@@ -7,7 +7,7 @@ hooks =
     console.log result
     return response.send result.message, result.status if result.status is 400
     twitter = new Twitter()
-    twitter.tweet result.message, (error) ->
+    twitter.tweet result.message, (error, result) ->
       return response.send error, 500 if error
       response.send 204
 
